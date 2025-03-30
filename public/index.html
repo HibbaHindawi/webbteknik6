@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Välkommen</title>
+    <script src="https://melab.lnu.se/~hh223ji/uppgift/public/Js/loginCheck.js"></script>
+    <script src="https://melab.lnu.se/~hh223ji/uppgift/public/Js/logout.js"></script>
+    <script src="https://melab.lnu.se/~hh223ji/uppgift/public/Js/script.js"></script>
+    <script src="https://melab.lnu.se/~hh223ji/uppgift/public/Js/common.js"></script>
+    <link rel="stylesheet" href="https://melab.lnu.se/~hh223ji/uppgift/public/css/style.css">
+    <link rel="stylesheet" href="https://melab.lnu.se/~hh223ji/uppgift/public/css/responsive.css">
+</head>
+
+<body id="mainpage">
+    <header>
+        <p id="usernameTag">Användarnamn</p>
+        <div class="button-container">
+            <button id="newList">Ny Lista <img src="https://melab.lnu.se/~hh223ji/uppgift/public/images/plus.png" alt="Plus sign"></button>
+            <button id="logoutBtn">Logga ut <img src="https://melab.lnu.se/~hh223ji/uppgift/public/images/logout.png" alt="Logout"></button>
+        </div>
+    </header>
+    <h1>Dina listor</h1>
+    <div id="listBox"></div>
+    <dialog id="createListDialog">
+        <button class="closeDialog">X</button>
+        <h2>Skapa ny Lista</h2>
+        <form id="listForm">
+            <label for="listName">Namn: </label>
+            <input id="listName" type="text" maxlength="30"><br>
+            <input type="submit" name="action" value="Skapa Lista">
+        </form>
+    </dialog>
+    <dialog id="shareDialog">
+    </dialog>
+</body>
+
+</html>
