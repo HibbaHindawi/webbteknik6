@@ -19,13 +19,11 @@ function createList(e) {
         alert("Du behöver namnge listan");
         return;
     }
-    const userId = localStorage.getItem("userid");
     fetch("https://melab.lnu.se/~hh223ji/uppgift/public/lists", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            name: name,
-            id: userId
+            name: name
         })
     })
         .then(response => response.json())

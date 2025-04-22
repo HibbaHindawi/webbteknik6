@@ -16,7 +16,7 @@ async function checkUserAccess() {
         return;
     }
     try {
-        let response = await fetch("https://melab.lnu.se/~hh223ji/uppgift/public/lists/" + listId + "/members/" + userId);
+        let response = await fetch("https://melab.lnu.se/~hh223ji/uppgift/public/lists/" + listId + "/members");
         if (!response.ok) {
             window.location.href = "https://melab.lnu.se/~hh223ji/uppgift/public/index.html";
             return;
@@ -138,7 +138,6 @@ async function submitTask(e) {
     let description = document.getElementById("taskDescription");
     const pathParts = window.location.pathname.split("/");
     const listId = pathParts[pathParts.length - 1];
-    const userId = localStorage.getItem("userid");
     const charCount = document.getElementById("charCount");
     try {
         let response = await fetch("https://melab.lnu.se/~hh223ji/uppgift/public/lists/" + listId + "/tasks", {
@@ -146,7 +145,6 @@ async function submitTask(e) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 name: taskInput.value,
-                userId: userId,
                 points: points.value,
                 description: description.value,
                 listId: listId
@@ -169,6 +167,8 @@ async function submitTask(e) {
 
 // Uppdatera status av en specifik uppgift
 async function updateTaskStatus(id, status) {
+    const pathParts = window.location.pathname.split("/");
+    const listId = pathParts[pathParts.length - 1];
     const userid = localStorage.getItem("userid");
     try {
         await fetch("https://melab.lnu.se/~hh223ji/uppgift/public/tasks/" + id + "/status", {
@@ -176,6 +176,7 @@ async function updateTaskStatus(id, status) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 taskStatus: status,
+                listId: listId,
                 userId: userid
             })
         });
@@ -187,9 +188,16 @@ async function updateTaskStatus(id, status) {
 
 // Radera specifik uppgift
 async function deleteTask(id) {
+    const url = window.location.href;
+    const parts = url.split('/');
+    const listId = parts[parts.length - 1];
     try {
         await fetch("https://melab.lnu.se/~hh223ji/uppgift/public/tasks/" + id, {
             method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                listId: listId
+            })
         });
         loadTasks();
     } catch (error) {

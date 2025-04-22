@@ -14,7 +14,7 @@ async function showList() {
             console.error("No user ID found in localStorage.");
             return;
         }
-        const response = await fetch("https://melab.lnu.se/~hh223ji/uppgift/public/lists/user/" + userId);
+        const response = await fetch("https://melab.lnu.se/~hh223ji/uppgift/public/lists");
         if (!response.ok) {
             throw new Error("HTTP error! Status:" + response.status);
         }
