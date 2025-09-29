@@ -1,8 +1,8 @@
 <?php
-    $hn = 'localhost';
-    $un = 'hh223ji';
-    $pw = 'Dpp4CE2E';
-    $db = 'hh223ji';
+    $hn = 'host';
+    $un = 'username';
+    $pw = 'password';
+    $db = 'db_name';
 
     $conn = new mysqli($hn, $un, $pw, $db);
     if ($conn->connect_error) {
